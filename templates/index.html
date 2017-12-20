@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+	<link href="http://vjs.zencdn.net/6.4.0/video-js.css" rel="stylesheet">
+
+	<title></title>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+	<div class="container">
+		<div class="jumbotron">
+			<h1 class="display-3">HughesTube</h1>
+			<p class="lead">The next Youtube</p>
+			<hr class="my-4">
+			<p>Try it out! </p>
+
+			
+
+		</div>
+	</div>
+
+	<div class="container">
+		<form action="http://localhost:5000/results" method="POST">
+			<div class="form-group">
+    			<label for="exampleInputEmail1">Video Search</label>
+   				<input type="text" class="form-control" name="search" id="search1" aria-describedby="search" placeholder="Enter Search">
+    			<small id="search" class="form-text text-muted">Search the catalog of Hughes-Echostar's instructional video catalog</small>
+    			<button id="search" class="btn btn-primary" type="submit"> Search </button>
+  			</div>
+
+		</form>
+	
+	</div>
+
+	<div class="container">
+		<div class="row text-center flex-wrap">
+			
+			{% for vid in result.hits.hits %}
+				<div class="col-lg-4">
+					<div class="thumbnail">
+					
+					
+						<div class="caption">
+							<h4>{{vid._source.name}}</h4>
+						</div>
+						
+						<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{vid._source.url}}" frameborder="0" allowfullscreen></iframe>
+
+						<!--
+						<video height="199" width="100%" controls>
+							<source src="file:///Users/yuvalreiss/Documents/Hughes/HughesTube/templates/e65-1.mp4/" type="video/mp4">
+							<source src="videos/{{vid._source.url}}" type="video/mp4">
+							<source src="videos/{{vid._source.url}}" type="video/wmv">
+						</video> -->
+						<p>Description: {{vid._source.description}}</p>
+						
+					</div>
+				</div>
+		         	
+		    {% endfor %}
+		</div>
+    </div>
+    
+    <script src="http://vjs.zencdn.net/6.4.0/video.js"></script>
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+</body>
+</html>
